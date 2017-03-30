@@ -1,4 +1,3 @@
-
 <html>
     <head>
         <meta charset="UTF-8">
@@ -9,7 +8,7 @@
             require_once "./lib/nusoap.php";
             $client = new nusoap_client("http://localhost/Rekrutacja/server.php");
             session_start();
-            if (!isset($_SESSION['ids'])) {
+            if (!isset($_SESSION['idp'])) {
         ?>
         <!-- stronka przed zalogowaniem -->
         <?php
@@ -18,6 +17,6 @@
         <!-- stronka po zalogowaniu -->
         <?php
             }
-        ?> 
+        ?>
     </body>
 </html>
