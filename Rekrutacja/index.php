@@ -8,15 +8,21 @@
         <?php
             require_once "./lib/nusoap.php";
             $client = new nusoap_client("http://localhost/Rekrutacja/server.php");
-            session_start();
-        
-            if(isset($_SESSION['logout'])){
-                session_destroy();
-                header("Refresh:0; url=index.php");
+            $err = $client->getError();
+            if ($err) {
+                echo '<h2>Constructor error</h2><pre>' . $err . '</pre>';
             }
-        
-        
-            if (!isset($_SESSION['ids'])) {
+            session_start();
+            if (isset($_GET['logout'])) {
+                session_destroy();
+                header("Location: index.php");
+            }
+            if((isset($_POST['log']) && isset($_POST['pas']))){
+                $result=$client->call('ServerWS.login', array('id' => $_POST['log'], 'password' => $_POST['pas'], 'who' => 'student')); 
+                if($result)
+                    $_SESSION['student']=1;
+                }
+            if (!isset($_SESSION['student'])) {
         ?>
         <!-- stronka przed zalogowaniem -->
         <?php
