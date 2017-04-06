@@ -41,13 +41,6 @@ class ServerWS {
             $this->server->service($GLOBALS['HTTP_RAW_POST_DATA'] );
 	}
         
-        public function registerMethod($nameMethod){
-            $this->server->register($nameMethod);
-	}
-        
-	public function processRequest(){
-            $this->server->service($GLOBALS['HTTP_RAW_POST_DATA'] );
-	}
         
 }
 
