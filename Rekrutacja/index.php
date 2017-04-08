@@ -15,7 +15,7 @@
             session_start();
             if (isset($_GET['logout'])) {
                 session_destroy();
-                header("Location: index.php");
+                header("Refresh:0; url=index.php");
             }
             if((isset($_POST['log']) && isset($_POST['pas']))){
                 $result=$client->call('ServerWS.login', array('id' => $_POST['log'], 'password' => $_POST['pas'], 'who' => 'student')); 
