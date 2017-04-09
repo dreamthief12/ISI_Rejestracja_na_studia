@@ -17,7 +17,7 @@
                 header("Location: administracja.php");
             }
             if((isset($_POST['log']) && isset($_POST['pas']))){
-                $result=$client->call('ServerWS.login', array('id' => $_POST['log'], 'password' => $_POST['pas'], 'who' => 'pracownik')); 
+                $result=$client->call('ServerWS.login', array('id' => $_POST['log'], 'password' => $_POST['pas'], 'who' => 'Pracownik')); 
                 if($result)
                     $_SESSION['pracownik']=1;
                 }
