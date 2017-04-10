@@ -2,9 +2,7 @@
 
 require_once "./lib/nusoap.php";
 
-class Student {
-    
-}
+
 
 class DBController{
     public function connect(){
@@ -59,6 +57,34 @@ class AccountController{
             return "Wystąpił błąd. Spróbuj ponownie.";
         }
     }
+	
+    public function registration($name, $surname, $birthDate, $address, $pesel, $email, $phonenr){
+        global $conn;
+        
+        if(empty($address)) $address = '';
+        if(empty($phonenr)) $phonenr = 0;
+        
+        $name = mysqli_real_escape_string($conn, $name);
+        $surname = mysqli_real_escape_string($conn, $surname);
+        $birthDate = mysqli_real_escape_string($conn, $birthDate);
+        $address = mysqli_real_escape_string($conn, $address);
+        $pesel = mysqli_real_escape_string($conn, $pesel);
+        $email = mysqli_real_escape_string($conn, $email);
+        $phonenr = mysqli_real_escape_string($conn, $phonenr);
+        
+        
+        if(!(empty($name)&&empty($surname)&&empty($birthDate)&&empty($pesel)&&empty($email))){
+            $sq = mysqli_query($conn, "INSERT INTO Student (Imie, Nazwisko, DataUrodzenia, Adres, Pesel, Email, nrTelefonu) values ('$name', '$surname', '$birthDate', '$address', $pesel, '$email', $phonenr);");
+            if($sq==1){
+                return "Zarejestrowano.";
+            } else {
+                return "Rejestracja nie powiodla sie. Sprobuj ponownie.";
+            }  
+        } else {
+            return "WYPELNIJ WSZYSTKIE POLA!";
+        }
+    }
+	
 }
 
 class Transfer{
@@ -100,6 +126,45 @@ class Degree{
     }
     
 }
+
+class Student {
+    public function editData($name, $surname, $birthDate, $address, $pesel, $email, $phonenr, $photo, $gender, $id){
+        global $conn;
+        
+        //$id = session id
+        
+        if(empty($address)) $address = '';
+        if(empty($phonenr)) $phonenr = 0;
+        
+        $name = mysqli_real_escape_string($conn, $name);
+        $surname = mysqli_real_escape_string($conn, $surname);
+        $birthDate = mysqli_real_escape_string($conn, $birthDate);
+        $address = mysqli_real_escape_string($conn, $address);
+        $pesel = mysqli_real_escape_string($conn, $pesel);
+        $email = mysqli_real_escape_string($conn, $email);
+        $phonenr = mysqli_real_escape_string($conn, $phonenr);
+
+        if(!(empty($name)&&empty($surname)&&empty($birthDate)&&empty($pesel)&&empty($email))){
+            $sq = mysqli_query($conn, "UPDATE Student SET (Imie, Nazwisko, DataUrodzenia, Adres, Pesel, Email, nrTelefonu, Zdjecie, Plec) values ('$name', '$surname', '$birthDate', '$address', $pesel, '$email', $phonenr, '$photo', '$gender');");
+            if($sq==1){
+                return "Zaktualizowano!";
+            } else {
+                return "Aktualizacja nie powiodla sie. Sprobuj ponownie.";
+            }  
+        } 
+        
+        $sql="Select * from Student where IdStudenta=$id;";
+        $showstudentdata = mysqli_query($conn,$sql);
+        while ($row = mysqli_fetch_assoc($showstudentdata)) {
+            $studentdata .= $row['Imie'].';'.$row['Nazwisko'].';'.$row['DataUrodzenia'].';'.$row['Adres'].';'.$row['Pesel'].';'.$row['Email'].';'.$row['nrTelefonu'].';'.$row['Zdjecie'].';'.$row['Plec'];
+        }
+        return $studentdata;
+        
+        
+        
+    }
+}
+
 
 class ServerWS {
 	public $server = NULL;
@@ -146,6 +211,18 @@ class ServerWS {
             return $r;
         }
         
+	public function registration($name, $surname, $birthDate, $address, $pesel, $email, $phonenr){
+            $r = new AccountController();
+            $result = $r->registration($name, $surname, $birthDate, $address, $pesel, $email, $phonenr);
+            return $result;
+        }
+        
+        
+        public function editData($name, $surname, $birthDate, $address, $pesel, $email, $phonenr, $photo, $gender, $id){
+            $s = new Student();
+            $result = $s->editData($name, $surname, $birthDate, $address, $pesel, $email, $phonenr, $photo, $gender, $id);
+            return $result;
+        }
 }
 
 $conn;
@@ -158,6 +235,9 @@ $server->registerMethod('ServerWS.createAccount');
 $server->registerMethod('ServerWS.deleteAccount');
 $server->registerMethod('ServerWS.setLimit');
 $server->registerMethod('ServerWS.setReserveAmount');
+$server->registerMethod('ServerWS.registration');
+$server->registerMethod('ServerWS.editData');
+
 
 $server->processRequest();
 
