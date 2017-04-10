@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<!-- saved from url=(0039)http://getbootstrap.com/examples/theme/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!--<link rel="icon" href="http://getbootstrap.com/favicon.ico">-->
+
+    <title>Rejestracja</title>
+
+	<!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+	integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
+	integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+	
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+	crossorigin="anonymous"></script>
+	
+	<script src="bootstrap.min.js"></script>
+
+    <!-- Custom styles for this template -->
+    <link href="theme.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="">System rejestracji studentów</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="">Rejestracja</a></li>
+            <li><a href="">Logowanie studenta</a></li>
+            <li><a href="">Logowanie pracownika</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container theme-showcase" role="main">
+
+      <!-- Main jumbotron for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <h1>Rejestracja</h1>
+        <p>Aby zarejestrować się w systemie proszę uzupełnić poniższe pola tekstowe,
+		a następnie potwierdzić przyciskiem "Zarejestruj".</p>
+      </div>
+
+	<form>
+	  <div class="form-group">
+		<label for="name">Imię:</label>
+		<input type="text" class="form-control" id="name" pattern="[a-zA-Z \u0104\u0106\u0118\u0141\u0143\u00D3\u015A\u0179\u017B\u0105\u0107\u0119\u0142\u0144\u00F3\u015B\u017A\u017C]+$" required>
+	  </div>
+	  <div class="form-group">
+		<label for="surname">Nazwisko:</label>
+		<input type="text" class="form-control" id="surname" pattern="[a-zA-Z \u0104\u0106\u0118\u0141\u0143\u00D3\u015A\u0179\u017B\u0105\u0107\u0119\u0142\u0144\u00F3\u015B\u017A\u017C-]+$" required>
+	  </div>
+	  <div class="form-group">
+	  	<label for="gender">Płeć:</label>
+		<select id = "gender">
+		  <option value="M">Mężczyzna</option>
+		  <option value="K">Kobieta</option>
+		</select>
+	  </div>
+	  <div class="form-group">
+		<label for="birthDate">Data urodzenia:</label>
+		<input type="date" class="form-control" id="birthDate">
+	  </div>
+	  <div class="form-group">
+		<label for="address">Adres zamieszkania:</label>
+		<input type="text" class="form-control" id="address" pattern="[a-zA-Z 0-9\u0104\u0106\u0118\u0141\u0143\u00D3\u015A\u0179\u017B\u0105\u0107\u0119\u0142\u0144\u00F3\u015B\u017A\u017C]+$" required>
+	  </div>
+	  <div class="form-group">
+		<label for="pesel">PESEL:</label>
+		<input type="text" class="form-control" id="pesel" pattern="[0-9]+$" required>
+	  </div>
+	  <div class="form-group">
+		<label for="pwd">Hasło:</label>
+		<input type="password" class="form-control" id="pwd">
+	  </div>
+	  <div class="form-group">
+		<label for="pwdRepeat">Wpisz ponownie hasło:</label>
+		<input type="password" class="form-control" id="pwdRepeat">
+	  </div>
+	  <div class="form-group">
+		<label for="photo">Zdjęcie:</label>
+		<input type="file" class="form-control" id="photo">
+	  </div>
+	  <div class="form-group">
+		<label for="email">Adres mailowy:</label>
+		<input type="email" class="form-control" id="email">
+	  </div>
+	  <div class="form-group">
+		<label for="telNum">Numer telefonu:</label>
+		<input type="tel" class="form-control" id="telNum" pattern="[0-9]+$" required>
+	  </div>
+	  <button type="button" class="btn btn-lg btn-primary">Zarejestruj</button>
+	  <button type="button" class="btn btn-lg">Powrót na stronę główną systemu</button>
+	</form>	  
+
+    </div> <!-- /container -->
+	
+	<footer class="footer">
+      <div class="container">
+        <p class="text-muted">Temporary content</p>
+      </div>
+    </footer>
+  
+  </body>
+</html>
