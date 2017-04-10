@@ -43,3 +43,11 @@ p {
 .container .text-muted {
   margin: 20px 0;
 }
+
+#logout_btn {
+    clear: both;
+    position: absolute;
+    right: 0;
+    margin: 0px 220px;
+
+}
