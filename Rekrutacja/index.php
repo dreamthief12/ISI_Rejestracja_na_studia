@@ -25,6 +25,11 @@
             if (!isset($_SESSION['student'])) {
         ?>
         <!-- stronka przed zalogowaniem -->
+        
+        <!-- rejestracja -->
+          $r = $client->call("ServerWS.registration", array('name' => $_POST['name'], 'surname' => $_POST['surname'], 'birthDate' => $_POST['birthDate'], 'address'=> $_POST['address'], 'pesel'=> $_POST['pesel'], 'email'=> $_POST['email'], 'phonenr'=> $_POST['phonenr']));
+          echo $r;
+        
         <?php
             } else {
         ?>
