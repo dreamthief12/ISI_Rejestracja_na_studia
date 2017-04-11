@@ -32,7 +32,7 @@
         
         
         <!-- edycja danych -->
-        $re = $client->call("ServerWS.editData", array('name' => $_POST['name'], 'surname' => $_POST['surname'], 'birthDate' => $_POST['birthDate'], 'address'=> $_POST['address'], 'pesel'=> $_POST['pesel'], 'email'=> $_POST['email'], 'phonenr'=> $_POST['phonenr'], 'photo' => $photo, 'gender' => $_POST['gender'], 'id' => 1));
+        $re = $client->call("ServerWS.editData", array('name' => $_POST['name'], 'surname' => $_POST['surname'], 'birthDate' => $_POST['birthDate'], 'address'=> $_POST['address'], 'pesel'=> $_POST['pesel'], 'email'=> $_POST['email'], 'phonenr'=> $_POST['phonenr'], 'photo' => $photo, 'gender' => $_POST['gender'], 'id' => $_SESSION['ids']));
                     $res = explode(';', $re);
                     //print_r($res);
                     ?>
@@ -68,7 +68,7 @@
                         </table>           
                     </form>
         <!-- dodawanie wyników matur -->
-         $result = $client->call("ServerWS.editExamData", array('class' => 3, 'result' => 20, 'examNumber' => '123', 'id' => 1));
+         $result = $client->call("ServerWS.editExamData", array('class' => $_POST['class'], 'result' => $_POST['result'], 'examNumber' => $_POST['examNumber'], 'id' => $_SESSION['ids']));
                             print_r($result);
 //                            if($_POST['submit']){
 //                                //tutaj co ma się wyświetlić po zedytowaniu danych
