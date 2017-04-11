@@ -67,7 +67,14 @@
 
                         </table>           
                     </form>
-        
+        <!-- dodawanie wyników matur -->
+         $result = $client->call("ServerWS.editExamData", array('class' => 3, 'result' => 20, 'examNumber' => '123', 'id' => 1));
+                            print_r($result);
+//                            if($_POST['submit']){
+//                                //tutaj co ma się wyświetlić po zedytowaniu danych
+//                            } else {
+//                                //tutaj co ma się wyświetlić formularz do edycji 
+//                            }
                            
         <?php
             } else {
