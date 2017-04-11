@@ -159,9 +159,34 @@ class Student {
             $studentdata .= $row['Imie'].';'.$row['Nazwisko'].';'.$row['DataUrodzenia'].';'.$row['Adres'].';'.$row['Pesel'].';'.$row['Email'].';'.$row['nrTelefonu'].';'.$row['Zdjecie'].';'.$row['Plec'];
         }
         return $studentdata;
+    }
+	
+	
+	
+	public function editExamData($class, $result, $examNumber, $id){
+        global $conn;
+        
+        //$id - session id
+        
+        if(!empty($class)&&!empty($result)&&!empty($examNumber)){
+            $sq=mysqli_query($conn,"Insert into Matura (IdStudenta, Numer) values ($id, '$examNumber');");
+            $sq2 = mysqli_query($conn, "Insert into Matura_Przedmiot (Numer, IdPrzedmiotu, Wynik) values ('$examNumber', $class, $result);");
+            if($sq==1){
+                return 'Dodano maturę!';
+            } elseif ($sq2==1) {
+                return 'Dodano przedmiot do matury!';
+            } else {
+                return "Dodanie wynikow matur nie powiodlo sie. Sprobuj ponownie.";
+            }
+        }
         
         
         
+        $showclasses = mysqli_query($conn, "select * from Przedmiot;");
+        while($row = mysqli_fetch_assoc($showclasses)){
+            $classes[] = $row;
+        }
+        return $classes;
     }
 }
 
@@ -223,6 +248,12 @@ class ServerWS {
             $result = $s->editData($name, $surname, $birthDate, $address, $pesel, $email, $phonenr, $photo, $gender, $id);
             return $result;
         }
+	
+	public function editExamData($class, $result, $examNumber, $id){
+            $s = new Student();
+            $res = $s->editExamData($class, $result, $examNumber, $id);
+            return $res;
+        }
 }
 
 $conn;
@@ -237,7 +268,7 @@ $server->registerMethod('ServerWS.setLimit');
 $server->registerMethod('ServerWS.setReserveAmount');
 $server->registerMethod('ServerWS.registration');
 $server->registerMethod('ServerWS.editData');
-
+$server->registerMethod('ServerWS.editExamData');
 
 $server->processRequest();
 
