@@ -22,14 +22,14 @@
 	<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
 	crossorigin="anonymous"></script>
 
-	<script src="bootstrap.min.js"></script>
+	<script src="../bootstrap.min.js"></script>
     <script src="../commons/userCommonActions.js"></script>
     <!-- Custom styles for this template -->
     <link href="../theme.css" rel="stylesheet">
 
   </head>
 
-  <body>
+  <body onload="fill_menu(1)">
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -44,31 +44,25 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav" id="user_menu">
             <li><a href="">Syllabus</a></li>
-            <li><a href="">Opcja1</a></li>
-            <li><a href="">Opcja2</a></li>
-            <li><a href="">Opcja3</a></li>
-            <li><a href="">Opcja4</a></li>
             <li id="logout_btn" onclick="logout()"><a href="../index.html">Wyloguj</a></li>
           </ul>
         </div><!--/.nav-collapse -->
 
       </div>
     </nav>
-    <div class="container theme-showcase" role="main">
+<div class="container theme-showcase" role="main">
 
       <!-- Main jumbotron for a primary marketing message or call to action -->
       <div class="jumbotron">
-        <h1>Strona główna</h1>
-        <p>Witaj uzytkowniku.</p>
+        <h1>System rekrutacji na studia wyższe na PK</h1>
+        <p>Witamy na stronie glownej</p>
       </div>
-
-    </div> <!-- /container -->
 
 	<footer class="footer">
       <div class="container">
         <p class="text-muted">Temporary content</p>
       </div>
     </footer>
-
+  </div>
   </body>
 </html>
