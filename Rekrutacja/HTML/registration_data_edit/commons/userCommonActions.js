@@ -34,3 +34,16 @@ function fill_menu(privileges)
         }
 
 }
+
+function fill_results_options()
+{
+    var results = document.getElementById("results");
+    for(i=30;i<=100;i++)
+    {
+        var option = document.createElement("option")
+        option.value = i;
+        option.innerHTML = i;
+        results.appendChild(option);
+    }
+
+}

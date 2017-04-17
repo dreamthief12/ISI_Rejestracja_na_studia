@@ -29,7 +29,7 @@
 
   </head>
 
-  <body onload="fill_menu($privileges)">
+  <body onload="fill_results_options(); fill_menu($privileges);">
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -54,9 +54,25 @@
 
       <!-- Main jumbotron for a primary marketing message or call to action -->
       <div class="jumbotron">
-        <h1>Rekrutacja</h1>
-        <p>Strona z rekrutacja</p>
+        <h1>Wyniki Matury</h1>
+        <p>Wypełnij formularz z wynikami maturalnymi.Do formularza wpisz tylko wynik z przedmiotu z którego uzyskałeś najlepsze rezultaty.</p>
+
       </div>
+
+    <form action="">
+	  <div class="form-group">
+		<label for="Wynik">Wynik z egzaminu maturalnego:</label>
+	  </div>
+
+      <div class="form-group">
+          <select id = "results"></select>
+	  </div>
+      <div class="form-group">
+          <button type="submit" class="btn btn-lg btn-primary" id="confirm_results" >Zatwierdź</button>
+	      <a href="../index.html"><button type="button" class="btn btn-lg">Powrót na stronę główną systemu</button></a>
+	  </div>
+
+	</form>
 
 	<footer class="footer">
       <div class="container">
